@@ -9,7 +9,13 @@ for i in getdatory:
         print("{} {}単位".format(i,getdatory[i]))
 
 print("")
-print("不足している単位")
+print("卒業要件に満たしている単位")
 for i in mandatory:
-    if (getdatory[i] <= mandatory[i]):
+    if (getdatory[i] >= mandatory[i]):
+        print("{} {}単位".format(i,getdatory[i]))
+
+print("")
+print("卒業要件に不足している単位")
+for i in mandatory:
+    if (getdatory[i] < mandatory[i]):
         print("{} {}単位".format(i,mandatory[i]))
