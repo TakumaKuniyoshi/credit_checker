@@ -43,8 +43,14 @@ def calc(grade):
     required_total = total - sum
     print("合計必要単位数：" + str(required_total))
 
+    print("現在の共通科目の取得単位数：" + str(common_sum))
+
+    print("現在の専門基礎科目の取得単位数：" + str(basic_sum))
+
+    print("現在の専門科目の取得単位数：" + str(specialize_sum))
+
     current = total - required_total
-    print("現在の取得単位数：" + str(current))
+    print("現在の合計取得単位数：" + str(current))
 
 calc(grade)
 
