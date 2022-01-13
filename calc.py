@@ -1,3 +1,4 @@
+#仮の成績
 grade_2 = {"健康運動":2, "人文":4, "社会":6, "総合":2, "キャリア関係":0, "琉大特色・地域創生":0, "総合領域":0, 
 "日本語・日本語事情":0, "小計１":14, "自然":0, "小計２":14, "情報関係":2, "英語":8, "ドイツ語":0, "フランス語":0, 
 "スペイン語":0, "中国語":4, "その他":0, "外国語計":12, "共通":30, "専門基礎":8, "専門基礎指定外":0, 
@@ -31,7 +32,87 @@ TOTAL = 130 #合計130
 
 #現在の単位数を出力する
 def now_grade(garde):
-    print(garde)
+    print("「現在の取得単位数」")
+
+    '''現在の単位数の出力'''
+    print("・共通教育")
+    print("健康運動 : " + str(grade_2["健康運動"]))
+
+    print("人文：" + str(grade_2["人文"]))
+
+    print("社会：" + str(grade_2["社会"]))
+
+    print("総合：" + str(grade_2["総合"]))
+
+    print("キャリア関係：" + str(grade_2["キャリア関係"]))
+
+    print("琉大特色・地域創生：" + str(grade_2["琉大特色・地域創生"]))
+
+    print("総合領域：" + str(grade_2["総合領域"]))
+
+    print("小計１：" + str(grade_2["小計１"]))
+
+    print("自然：" + str(grade_2["自然"]))
+
+    print("小計２：" + str(grade_2["小計２"]))
+    
+    print("情報関係：" + str(grade_2["情報関係"]))
+
+    print("英語：" + str(grade_2["英語"]))
+
+    print("ドイツ語：" + str(grade_2["ドイツ語"]))
+
+    print("中国語：" + str(grade_2["中国語"]))
+
+    print("スペイン語：" + str(grade_2["スペイン語"]))
+
+    print("その他：" + str(grade_2["その他"]))
+
+    print("外国語：" + str(grade_2["外国語計"]))
+
+    print("・専門教育")
+
+    print("専門基礎：" + str(grade_2["専門基礎"]))
+
+    print("専門基礎指定外：" + str(grade_2["専門基礎指定外"]))
+
+    print("情報技術：" + str(grade_2["情報技術"]))
+
+    print("総合力演習：" + str(grade_2["総合力演習"]))
+    
+    print("研究実験：" + str(grade_2["研究実験"]))
+
+    print("数学基礎：" + str(grade_2["数学基礎"]))
+    
+    print("知能情報コア：" + str(grade_2["知能情報コア"]))
+    
+    print("工学融合（選択）：" + str(grade_2["工学融合（選択）"]))
+
+    print("数学基礎（選択）：" + str(grade_2["数学基礎（選択）"]))
+
+    print("知能情報アドバンスト：" + str(grade_2["知能情報アドバンスト"]))
+
+    print("知能情報関連：" + str(grade_2["知能情報関連"]))
+
+    print("数情計：" + str(grade_2["数情計"]))
+
+    print("選択（工学共通）：" + str(grade_2["選択（工学共通）"]))
+
+    print("自由：" + str(grade_2["自由"]))
+
+    print("教職：" + str(grade_2["教職"]))
+    
+    print("数情等計：" + str(grade_2["数情等計"]))
+
+    print("共通必要単位数：" + str(grade_2["共通"]))
+
+    print("専門必要単位数：" + str(grade_2["専門計"]))
+
+    print("合計必要単位数：" + str(grade_2["合計"]))
+
+    print()
+
+
 
 #必要単位数が計算上0以下になった場合に0に調整する
 def grade_adjust(subject):
@@ -44,6 +125,7 @@ def grade_adjust(subject):
 
 #必要単位数を出力する
 def calc(grade_2):
+    print("「必要単位数」")
     '''必要必須単位の出力'''
     health_exercise = HEALTH_EXERCISE - grade_2["健康運動"]
     health_exercise = grade_adjust(health_exercise)
@@ -57,13 +139,21 @@ def calc(grade_2):
     society = grade_adjust(society)
     print("社会：" + str(society))
 
+    print("総合：0")
+    print("キャリア関係：0")
+    print("琉大特色・地域創生：0")
+
     comprehensive = COMPREHENSIVE - grade_2["総合領域"]
     comprehensive = grade_adjust(comprehensive)
     print("総合領域：" + str(comprehensive))
 
+    print("日本語・日本語事情：0")
+
     subtotal_1 = SUBTOTAL_1 - grade_2["小計１"]
     subtotal_1 = grade_adjust(subtotal_1)
     print("小計１：" + str(subtotal_1))
+
+    print("自然：0")
 
     subtotal_2 = SUBTOTAL_2 - grade_2["小計２"]
     subtotal_2 = grade_adjust(subtotal_2)
@@ -77,6 +167,12 @@ def calc(grade_2):
     english = grade_adjust(english)
     print("英語：" + str(english))
 
+    print("ドイツ語：0")
+    print("フランス語：0")
+    print("スペイン語：0")
+    print("中国語：0")
+    print("その他：0")
+
     foreign_language = FOREIGN_LANGUAGE - grade_2["外国語計"]
     foreign_language = grade_adjust(foreign_language)
     print("外国語：" + str(foreign_language))
@@ -84,6 +180,8 @@ def calc(grade_2):
     basic = BASIC - grade_2["専門基礎"]
     basic = grade_adjust(basic)
     print("専門基礎：" + str(basic))
+
+    print("専門基礎指定外：0")
 
     information_technology = INFORMATION_TECHNOLOGY - grade_2["情報技術"]
     information_technology = grade_adjust(information_technology)
@@ -109,9 +207,17 @@ def calc(grade_2):
     fusion = grade_adjust(fusion)
     print("工学融合（選択）：" + str(fusion))
 
+    print("数学基礎（選択）：0")
+    print("知能情報アドバンスト：0")
+    print("知能情報関連：0")
+
     subtotal_3 = SUBTOTAL_3 - grade_2["数情計"]
     subtotal_3 = grade_adjust(subtotal_3)
     print("数情計：" + str(subtotal_3))
+
+    print("選択（工学共通）：0")
+    print("自由：0")
+    print("教職：0")
 
     subtotal_4 = SUBTOTAL_4 - grade_2["数情等計"]
     subtotal_4 = grade_adjust(subtotal_4)
@@ -131,13 +237,8 @@ def calc(grade_2):
     required_total = TOTAL - sum
     required_total = grade_adjust(required_total)
     print("合計必要単位数：" + str(required_total))
+    print()
 
-calc(grade_2)
 now_grade(grade_2)
+calc(grade_2)
 
-'''
-print("共通教育 \n 健康運動　\n 人文　\n 社会 \n 総合 \n キャリア関係 \n 流大特色・地域創生 \n 日本語・日本語事情 \n 自然 \n 情報関係 \n 英語 \n ドイツ語 \n フランス語 \n スペイン語 \n 中国語 \n その他")
-print("専門基礎教育 \n 専門基礎 \n 専門基礎指定外")
-print("専門教育 \n 情報技術 \n 総合力演習 \n 研究実験 \n 数学基礎 \n 知能情報コア \n 工学融合（選択） \n 数学基礎（基礎） \n 知能情報アドバンスト \n 知能情報関連 \n 選択（工学共通） \n 自由 \n 教職")
-print("合計")
-'''
