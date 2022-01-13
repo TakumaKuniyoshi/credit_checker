@@ -1,0 +1,63 @@
+<ResultScreen>:
+  BoxLayout:
+    orientation: 'vertical'
+    padding:50
+    spacing:20
+    Button:
+      pos: root.size[0]-self.size[0]-50,self.pos[1]
+      halign: 'center'
+      valign: 'center'
+      size: 300,50
+      text:'別の成績表を使う'
+      size_hint: None, None
+
+    BoxLayout:
+      height: 50
+      size_hint_y: None
+      LLabel:
+        valign: 'bottom'
+        text: '取得している単位'
+      LLabel:
+        valign: 'bottom'
+        text: '不足している単位'
+
+    BoxLayout:
+      padding: [50,0,50,0]
+      spacing: 150
+      ScrollView:
+        id: finished
+      ScrollView:
+        id: need
+
+<ScrollView>:
+  bar_inactive_color: [.1,.1,.1,0]
+  bar_margin: -10
+
+<Label>:
+  
+  font_name: '/System/Library/Fonts/ヒラギノ角ゴシック W2.ttc'
+
+<LLabel>:
+  halign: 'left'
+
+<RLabel>:
+  halign: 'right'
+
+<Border>:
+  size_hint_y: None
+  height: 1
+  margin: 0
+  canvas:
+    Color:
+      rgb: 0.4, 0.4, 0.4
+    Rectangle:
+      pos: self.pos[0], self.pos[1]+40
+      size: self.width, 1
+
+<MyList>:
+  size_hint_y: None
+  height: self.minimum_height
+  rows: 0
+  cols: 2
+  row_force_default: True
+  row_default_height: 50
