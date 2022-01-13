@@ -27,6 +27,11 @@ class LoadDialog(FloatLayout): #ファイル読み込み時のダイアログボ
 
 
 class FileSelectScreen(Screen): 
+    def __init__(self,name,screen_manager, **kw):
+        super(FileSelectScreen,self).__init__()
+        self.screen_manager = screen_manager
+        self.name = name
+
     loadfile = ObjectProperty(None)
 
     def dismiss_popup(self):
@@ -46,6 +51,7 @@ class FileSelectScreen(Screen):
             #ここにPDFを読み込んだ後の処理を書く
 
         self.dismiss_popup()
+        self.screen_manager.current = 'result'
 
 
     

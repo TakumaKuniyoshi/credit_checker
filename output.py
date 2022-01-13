@@ -11,8 +11,10 @@ from kivy.lang import Builder
 Builder.load_file('./result.kv')
 
 class ResultScreen(Screen):
-    def __init__(self, **kwargs):
-        super(ResultScreen, self).__init__(**kwargs)
+    def __init__(self,name,screen_manager, **kwargs):
+        self.screen_manager = screen_manager
+        self.name = name
+        super(ResultScreen, self).__init__()
         self.finishedList = MyList()
         self.needList = MyList()
         finList = {'健康運動':2,'英語':3,'工学融合':1}
