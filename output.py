@@ -18,7 +18,7 @@ class ResultScreen(Screen):
         self.finishedList = MyList()
         self.needList = MyList()
         finList = {'健康運動':2,'英語':3,'工学融合':1}
-        neList = {'情報技術':1,'知能情報コア':10,'知能情報アドバンスト':9.5}
+        neList = {'情報技術':1,'知能情報コア':10,'知能情報アドバンスト':9.5,'人文+社会+総合領域':10.5,'人+社+総+自然':10.5}
         self.setListData(finList,neList)
         self.ids.finished.add_widget(self.finishedList)
         self.ids.need.add_widget(self.needList)

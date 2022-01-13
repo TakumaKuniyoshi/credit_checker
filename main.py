@@ -29,7 +29,10 @@ class MainApp(App):
         return self.sm
 
     def _on_file_drop(self, window, file_path):
+        if not self.sm.current == 'fileSelect':
+            return
         print(file_path)
+        self.sm.transition.direction = 'left'
         self.sm.current = 'result'
         return
 

@@ -51,6 +51,7 @@ class FileSelectScreen(Screen):
             #ここにPDFを読み込んだ後の処理を書く
 
         self.dismiss_popup()
+        self.screen_manager.transition.direction = 'left'
         self.screen_manager.current = 'result'
 
 

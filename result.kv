@@ -10,7 +10,10 @@
       size: 300,50
       text:'別の成績表を使う'
       size_hint: None, None
-      on_release: root.manager.current = 'fileSelect'
+      on_release: 
+        root.manager.transition.direction = 'right'
+        root.manager.current = 'fileSelect'
+        
 
     BoxLayout:
       height: 50
