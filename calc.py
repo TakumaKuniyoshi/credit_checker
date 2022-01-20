@@ -30,7 +30,7 @@ SPECIALIZE = 92 #専門計92
 
 TOTAL = 130 #合計130
 
-#現在の単位数を出力する
+#現在の取得単位数を出力する
 def now_grade(garde):
     print("「現在の取得単位数」")
 
@@ -124,9 +124,11 @@ def grade_adjust(subject):
 
 
 #必要単位数を出力する
+#成績表に掲示されている必須単位数との差分を表示
 def calc(grade_2):
     print("「必要単位数」")
     '''必要必須単位の出力'''
+    print("・共通教育")
     health_exercise = HEALTH_EXERCISE - grade_2["健康運動"]
     health_exercise = grade_adjust(health_exercise)
     print("健康運動 : " + str(health_exercise))
@@ -176,6 +178,8 @@ def calc(grade_2):
     foreign_language = FOREIGN_LANGUAGE - grade_2["外国語計"]
     foreign_language = grade_adjust(foreign_language)
     print("外国語：" + str(foreign_language))
+
+    print("・専門教育")
 
     basic = BASIC - grade_2["専門基礎"]
     basic = grade_adjust(basic)
