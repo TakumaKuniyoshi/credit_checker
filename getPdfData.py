@@ -5,6 +5,7 @@ import pandas
 def getCreditData(filePath:str):
     area = [202,543,468,800]
     data = tabula.read_pdf(filePath,pages=1,area=area)
+
     data = data[0]
     dataright = data[['単位修得状況','必須単位','修得単位']]
     dataright = dataright.dropna(how='all')
@@ -29,7 +30,8 @@ def getCreditData(filePath:str):
     keyDict['小計1'] = '人文+社会+総合領域'
     keyDict['小計2'] = '人+社+総+自然'
     keyDict['その他'] = 'その他言語'
-    return [RequiredCreditsDict,CreditEarnedDict,keyDict]
+
+    return creditCalculation([RequiredCreditsDict,CreditEarnedDict,keyDict])
     
 def creditCalculation(data):
     RequiredCreditsDict = data[0]
@@ -44,6 +46,7 @@ def creditCalculation(data):
             keylanguage += [key]
             if CreditEarnedDict[key] > 0:
                 RequiredCreditsDict[key] = 4
+                
                 if CreditEarnedDict[key] % 1 == 0:
                     CreditEarnedDict[key] = int (CreditEarnedDict[key])
                 finish[key] = CreditEarnedDict[key]
@@ -74,7 +77,8 @@ def creditCalculation(data):
                     necessary[key]=0
                     del necessary[key]
                 return [necessary,finish]
+
         for key in keylanguage:
             finish[key] = 0
             del finish[key]
-    return [necessary,finish]
+    return [finish,necessary]

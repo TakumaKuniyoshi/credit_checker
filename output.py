@@ -17,7 +17,9 @@ class ResultScreen(Screen):
         super(ResultScreen, self).__init__()
 
         
-    def setListData(self,finishedDic,needDic):
+    def setListData(self,datas):
+        finishedDic = datas[0]
+        needDic = datas[1]
         self.ids.finished.clear_widgets()
         self.ids.need.clear_widgets()
         finishedList = MyList()
