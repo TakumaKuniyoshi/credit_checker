@@ -44,7 +44,10 @@ def creditCalculation(data):
             keylanguage += [key]
             if CreditEarnedDict[key] > 0:
                 RequiredCreditsDict[key] = 4
+                if CreditEarnedDict[key] % 1 == 0:
+                    CreditEarnedDict[key] = int (CreditEarnedDict[key])
                 finish[key] = CreditEarnedDict[key]
+                print(finish[key])
         if(RequiredCreditsDict[key] != 0 or CreditEarnedDict[key] != 0):
             if RequiredCreditsDict[key] > CreditEarnedDict[key]:
                 n = RequiredCreditsDict[key]-CreditEarnedDict[key]
@@ -71,5 +74,7 @@ def creditCalculation(data):
                     necessary[key]=0
                     del necessary[key]
                 return [necessary,finish]
-
+        for key in keylanguage:
+            finish[key] = 0
+            del finish[key]
     return [necessary,finish]
