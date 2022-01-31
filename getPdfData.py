@@ -23,8 +23,53 @@ def getCreditData(filePath:str):
     CreditEarned += dataleft['修得単位.1']
     RequiredCreditsDict = dict(zip(name,RequiredCredits))
     CreditEarnedDict = dict(zip(name,CreditEarned))
-    for key in list(RequiredCreditsDict):
-        if RequiredCreditsDict[key] == 0 and CreditEarnedDict[key] == 0:
-            del RequiredCreditsDict[key],CreditEarnedDict[key]
 
-    return [RequiredCreditsDict,CreditEarnedDict]
+
+    keyDict = dict(zip(name,name))
+    keyDict['小計1'] = '人文+社会+総合領域'
+    keyDict['小計2'] = '人+社+総+自然'
+    keyDict['その他'] = 'その他言語'
+    return [RequiredCreditsDict,CreditEarnedDict,keyDict]
+    
+def creditCalculation(data):
+    RequiredCreditsDict = data[0]
+    CreditEarnedDict = data[1]
+    keyDict = data[2]
+    necessary = {}
+    finish = {}
+    i = 0
+    keylanguage = []
+    for key in list(RequiredCreditsDict):
+        if (keyDict[key][-1] ==  '語' and not(key =='英語')):
+            keylanguage += [key]
+            if CreditEarnedDict[key] > 0:
+                RequiredCreditsDict[key] = 4
+                finish[key] = CreditEarnedDict[key]
+        if(RequiredCreditsDict[key] != 0 or CreditEarnedDict[key] != 0):
+            if RequiredCreditsDict[key] > CreditEarnedDict[key]:
+                n = RequiredCreditsDict[key]-CreditEarnedDict[key]
+                if n%1 == 0:
+                    n = int(n)
+                necessary[keyDict[key]] = n
+            else:
+                n = CreditEarnedDict[key]
+                if n%1 == 0:
+                    n = int(n)
+                finish[keyDict[key]] = n
+        
+    if CreditEarnedDict['英語'] >= 8:
+        if CreditEarnedDict['英語'] >= 12:
+            for key in keylanguage:
+                necessary[key] = 0
+                del necessary[key]
+            return [necessary,finish]
+        for key in keylanguage:
+            if CreditEarnedDict[key] >= 4:
+                for key in keylanguage:
+                    if CreditEarnedDict[key] > 0:
+                        finish[key] = CreditEarnedDict[key]
+                    necessary[key]=0
+                    del necessary[key]
+                return [necessary,finish]
+
+    return [necessary,finish]
