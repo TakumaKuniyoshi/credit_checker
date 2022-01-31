@@ -15,17 +15,17 @@ class ResultScreen(Screen):
         self.screen_manager = screen_manager
         self.name = name
         super(ResultScreen, self).__init__()
-        self.finishedList = MyList()
-        self.needList = MyList()
-        finList = {'健康運動':2,'英語':3,'工学融合':1}
-        neList = {'情報技術':1,'知能情報コア':10,'知能情報アドバンスト':9.5,'人文+社会+総合領域':10.5,'人+社+総+自然':10.5}
-        self.setListData(finList,neList)
-        self.ids.finished.add_widget(self.finishedList)
-        self.ids.need.add_widget(self.needList)
-    
-    def setListData(self,finishedList,needList):
-        self.finishedList.addLists(finishedList)
-        self.needList.addLists(needList)
+
+        
+    def setListData(self,finishedDic,needDic):
+        self.ids.finished.clear_widgets()
+        self.ids.need.clear_widgets()
+        finishedList = MyList()
+        needList = MyList()
+        finishedList.addLists(finishedDic)
+        needList.addLists(needDic)
+        self.ids.finished.add_widget(finishedList)
+        self.ids.need.add_widget(needList)
 
 class RLabel(Label):
     pass

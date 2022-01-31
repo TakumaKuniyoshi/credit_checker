@@ -27,10 +27,11 @@ class LoadDialog(FloatLayout): #ファイル読み込み時のダイアログボ
 
 
 class FileSelectScreen(Screen): 
-    def __init__(self,name,screen_manager, **kw):
+    def __init__(self,name,screen_manager,resultScreen, **kw):
         super(FileSelectScreen,self).__init__()
         self.screen_manager = screen_manager
         self.name = name
+        self.resultScreen = resultScreen
 
     loadfile = ObjectProperty(None)
 
@@ -52,6 +53,14 @@ class FileSelectScreen(Screen):
 
         self.dismiss_popup()
         self.screen_manager.transition.direction = 'left'
+
+        #単位数計算処理+出力リスト作成
+        #-----テスト用-----
+        finDic = {'健康運動':2,'英語':3,'工学融合':1,'英語プレゼンテーション中級':10}
+        neDic = {'情報技術':1,'知能情報コア':10,'知能情報アドバンスト':9.5,'人文+社会+総合領域':10.5,'人+社+総+自然':10.5}
+        self.resultScreen.setListData(finDic,neDic)
+        #-----テスト用-----
+
         self.screen_manager.current = 'result'
 
 
