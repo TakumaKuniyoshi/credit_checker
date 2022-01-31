@@ -13,6 +13,8 @@ from kivy.core.window import Window
 import os
 import output
 import fileSelect
+import getPdfData
+import loading
 
 
 resource_add_path('/System/Library/Fonts')
@@ -26,6 +28,7 @@ class MainApp(App):
         self.resultScreen = output.ResultScreen(name='result',screen_manager=self.sm)
         self.sm.add_widget(fileSelect.FileSelectScreen(name='fileSelect', screen_manager=self.sm,resultScreen=self.resultScreen))
         self.sm.add_widget(self.resultScreen)
+        self.sm.add_widget(loading.LoadScreen(name='loading', screen_manager=self.sm))
         self.sm.current = 'fileSelect'
         return self.sm
 
@@ -34,12 +37,10 @@ class MainApp(App):
             return
         print(file_path)
         self.sm.transition.direction = 'left'
+        self.sm.current = 'loading'
+        datas = getPdfData.getCreditData(file_path)
+        self.resultScreen.setListData(datas)
         self.sm.current = 'result'
-
-        #出力結果テスト用
-        finDic = {'健康運動':2,'英語':3,'工学融合':1}
-        neDic = {'情報技術':1,'知能情報コア':10,'知能情報アドバンスト':9.5,'人文+社会+総合領域':10.5,'人+社+総+自然':10.5}
-        self.resultScreen.setListData(finDic,neDic)
         return
 
 if __name__ == "__main__":
