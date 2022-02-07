@@ -1,3 +1,6 @@
+from concurrent.futures import thread
+import threading
+from tracemalloc import start
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.app import App
@@ -22,13 +25,14 @@ LabelBase.register(DEFAULT_FONT, 'ヒラギノ角ゴシック W2.ttc')
 Window.size=(970,600)
 
 class MainApp(App):
+    title = 'credit checker'
     def build(self):
         Window.bind(on_dropfile=self._on_file_drop)
         self.sm = ScreenManager()
         self.resultScreen = output.ResultScreen(name='result',screen_manager=self.sm)
         self.sm.add_widget(fileSelect.FileSelectScreen(name='fileSelect', screen_manager=self.sm,resultScreen=self.resultScreen))
         self.sm.add_widget(self.resultScreen)
-        self.sm.add_widget(loading.LoadScreen(name='loading', screen_manager=self.sm))
+        self.sm.add_widget(loading.LoadingScreen(name='loading', screen_manager=self.sm))
         self.sm.current = 'fileSelect'
         return self.sm
 
@@ -37,7 +41,6 @@ class MainApp(App):
             return
         print(file_path)
         self.sm.transition.direction = 'left'
-        self.sm.current = 'loading'
         datas = getPdfData.getCreditData(file_path)
         self.resultScreen.setListData(datas)
         self.sm.current = 'result'
@@ -45,4 +48,3 @@ class MainApp(App):
 
 if __name__ == "__main__":
     MainApp().run()
-
