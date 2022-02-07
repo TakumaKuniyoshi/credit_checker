@@ -1,5 +1,4 @@
 import tabula
-import pandas
 
 #成績表右下の単位情報を取得
 def getCreditData(filePath:str):
@@ -31,7 +30,12 @@ def getCreditData(filePath:str):
     keyDict['小計2'] = '人+社+総+自然'
     keyDict['その他'] = 'その他言語'
 
+    for key in keyDict:
+        if(key[0]=='(' or key[0]=='【'):
+            keyDict[key] = key[1:len(key)-1]
+    print(keyDict)
     return creditCalculation([RequiredCreditsDict,CreditEarnedDict,keyDict])
+
     
 def creditCalculation(data):
     RequiredCreditsDict = data[0]
@@ -46,7 +50,7 @@ def creditCalculation(data):
             keylanguage += [key]
             if CreditEarnedDict[key] > 0:
                 RequiredCreditsDict[key] = 4
-                
+
                 if CreditEarnedDict[key] % 1 == 0:
                     CreditEarnedDict[key] = int (CreditEarnedDict[key])
                 finish[key] = CreditEarnedDict[key]
@@ -78,7 +82,9 @@ def creditCalculation(data):
                     del necessary[key]
                 return [necessary,finish]
 
+
         for key in keylanguage:
             finish[key] = 0
             del finish[key]
     return [finish,necessary]
+
