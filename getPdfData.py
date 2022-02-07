@@ -1,5 +1,4 @@
 import tabula
-import pandas
 
 #成績表右下の単位情報を取得
 def getCreditData(filePath:str):
