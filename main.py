@@ -17,7 +17,6 @@ import os
 import output
 import fileSelect
 import getPdfData
-import loading
 
 
 resource_add_path('/System/Library/Fonts')
@@ -32,7 +31,6 @@ class MainApp(App):
         self.resultScreen = output.ResultScreen(name='result',screen_manager=self.sm)
         self.sm.add_widget(fileSelect.FileSelectScreen(name='fileSelect', screen_manager=self.sm,resultScreen=self.resultScreen))
         self.sm.add_widget(self.resultScreen)
-        self.sm.add_widget(loading.LoadingScreen(name='loading', screen_manager=self.sm))
         self.sm.current = 'fileSelect'
         return self.sm
 
