@@ -1,0 +1,34 @@
+#:kivy 1.1.0
+
+
+<FileSelectScreen>: #ホーム画面レイアウト
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            Button:
+                background_color: (0,0,0,0)
+                text: 'クリックしてファイルを選択 or ドラッグ&ドロップ'
+                on_release: root.show_load()
+
+
+
+<LoadDialog>: #ホーム=>読み込み=>ファイル選択画面
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            Button:
+                text: "キャンセル"
+                on_release: root.cancel()
+
+            Button:
+                text: "読み込み"
+                on_release: root.load(filechooser.path, filechooser.selection)
+                
+
