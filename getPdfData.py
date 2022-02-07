@@ -29,6 +29,10 @@ def getCreditData(filePath:str):
     keyDict['小計1'] = '人文+社会+総合領域'
     keyDict['小計2'] = '人+社+総+自然'
     keyDict['その他'] = 'その他言語'
+    for key in keyDict:
+        if(key[0]=='(' or key[0]=='【'):
+            keyDict[key] = key[1:len(key)-1]
+    print(keyDict)
     return [RequiredCreditsDict,CreditEarnedDict,keyDict]
     
 def creditCalculation(data):
@@ -44,7 +48,10 @@ def creditCalculation(data):
             keylanguage += [key]
             if CreditEarnedDict[key] > 0:
                 RequiredCreditsDict[key] = 4
+                if CreditEarnedDict[key] % 1 == 0:
+                    CreditEarnedDict[key] = int (CreditEarnedDict[key])
                 finish[key] = CreditEarnedDict[key]
+                print(finish[key])
         if(RequiredCreditsDict[key] != 0 or CreditEarnedDict[key] != 0):
             if RequiredCreditsDict[key] > CreditEarnedDict[key]:
                 n = RequiredCreditsDict[key]-CreditEarnedDict[key]
@@ -71,5 +78,7 @@ def creditCalculation(data):
                     necessary[key]=0
                     del necessary[key]
                 return [necessary,finish]
-
+        for key in keylanguage:
+            finish[key] = 0
+            del finish[key]
     return [necessary,finish]
