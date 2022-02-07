@@ -57,28 +57,10 @@ class FileSelectScreen(Screen):
         self.screen_manager.transition.direction = 'left'
 
         #単位数計算処理+出力リスト作成
-        self.sm.current = 'loading'
         datas = getPdfData.getCreditData(path)
         self.resultScreen.setListData(datas)
 
         self.screen_manager.current = 'result'
 
 
-    
-
-class Editor(App):
-    def build(self):#ドラッグ&ドロップの処理
-        Window.bind(on_dropfile=self.on_dropped_file)
-        return FileSelectScreen()
-
-    def on_dropped_file(self, window, file_path): #ドラッグ&ドロップの処理
-        self.root.text = file_path.decode('utf-8')
-        path = file_path.decode('utf-8') #読み込まれたファイルのパス
-        print(path)
-
-
 Factory.register('LoadDialog', cls=LoadDialog)
-
-
-if __name__ == '__main__':
-    Editor().run()

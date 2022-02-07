@@ -72,7 +72,7 @@ def creditCalculation(data):
             for key in keylanguage:
                 necessary[key] = 0
                 del necessary[key]
-            return [necessary,finish]
+            return [finish,necessary]
         for key in keylanguage:
             if CreditEarnedDict[key] >= 4:
                 for key in keylanguage:
@@ -80,7 +80,7 @@ def creditCalculation(data):
                         finish[key] = CreditEarnedDict[key]
                     necessary[key]=0
                     del necessary[key]
-                return [necessary,finish]
+                return [finish,necessary]
 
 
         for key in keylanguage:
