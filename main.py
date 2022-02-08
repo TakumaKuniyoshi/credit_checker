@@ -37,7 +37,7 @@ class MainApp(App):
     def _on_file_drop(self, window, file_path):
         if not self.sm.current == 'fileSelect':
             return
-        print(file_path)
+        #print(file_path)
         self.sm.transition.direction = 'left'
         datas = getPdfData.getCreditData(file_path)
         self.resultScreen.setListData(datas)
