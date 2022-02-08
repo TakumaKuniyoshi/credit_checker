@@ -33,7 +33,7 @@ def getCreditData(filePath:str):
     for key in keyDict:
         if(key[0]=='(' or key[0]=='【'):
             keyDict[key] = key[1:len(key)-1]
-    print(keyDict)
+    #print(keyDict)
     return creditCalculation([RequiredCreditsDict,CreditEarnedDict,keyDict])
 
     
@@ -54,7 +54,7 @@ def creditCalculation(data):
                 if CreditEarnedDict[key] % 1 == 0:
                     CreditEarnedDict[key] = int (CreditEarnedDict[key])
                 finish[key] = CreditEarnedDict[key]
-                print(finish[key])
+                #print(finish[key])
         if(RequiredCreditsDict[key] != 0 or CreditEarnedDict[key] != 0):
             if RequiredCreditsDict[key] > CreditEarnedDict[key]:
                 n = RequiredCreditsDict[key]-CreditEarnedDict[key]
