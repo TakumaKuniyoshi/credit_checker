@@ -50,7 +50,7 @@ class FileSelectScreen(Screen):
     def load(self, path, filename): #ファイルの読み込み
         with open(os.path.join(path, filename[0])) as stream:
             path = os.path.join(path, filename[0]) #読み込まれたファイルのパス
-            print(path)
+            #print(path)
             #ここにPDFを読み込んだ後の処理を書く
 
         self.dismiss_popup()
